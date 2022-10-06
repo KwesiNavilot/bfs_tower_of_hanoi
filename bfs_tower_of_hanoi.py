@@ -14,14 +14,14 @@ class Node:
 
 def evalFunc(node):
     largestDisk = 0
-    diskList=[]
+    blockList=[]
 
     for peg in initialState:
         if len(peg) > 0:
-            diskList.append(max(peg))
+            blockList.append(max(peg))
     
     # get largest item in set
-    largestDisk = max(diskList)
+    largestDisk = max(blockList)
     
     # print largestDisk node
     node.point = 10
@@ -68,12 +68,12 @@ def move(st1,st2):
 
 
 def moveDisc(n):
-    global noOfPegs
+    global noOfStacks
 
     stacks = []
 
-    for x in range(0, noOfPegs):
-        for y in range(0,noOfPegs):
+    for x in range(0, noOfStacks):
+        for y in range(0,noOfStacks):
 
             stacks = move(n.state[x],n.state[y])
 
@@ -101,7 +101,7 @@ def moveDisc(n):
     return None
 
 def printPath(node):
-    print('\nTracing back the Path')
+    print('\nTracing back the path')
     while True:
         print('Node number: ', node.nodeNumber,'  State:  ', node.state)
 
@@ -159,11 +159,11 @@ def breathFirstSearch(node):
 
 
 def readState():
-    global noOfPegs
-    state=[]
+    global noOfStacks
+    state = []
 
-    for x in range(0, noOfPegs):
-        print ('Discs in Peg', x+1, ' : ',)
+    for x in range(0, noOfStacks):
+        print ('Blocks in Stack', x+1, ' : ',)
         a = [int(x) for x in input().split()]
         state.append(a)
 
@@ -171,15 +171,13 @@ def readState():
 
 
 # FIRE THE APPLICATION
-noOfPegs=3
+print ('\nWelcome To Tower of Hanoi using Breath-First Search')
+print('\nINSTRUCTIONS:') 
+print('-->An example input for Blocks in a stack >>> 3 2 1')
+print( '-->This means your stack have 3 Blocks with block of size 3 at bottom and block of size 1 at top')
+print( '-->If the stack is empty, just click ENTER; Do not input anything in that case')
 
-print ('\nWelcome To Tower of Hanoi using breathFirstSearch')
-print('\nInstructions for input:') 
-print('-->An example input for discs in a peg >>> 3 2 1')
-print( '-->This means your peg have 3 discs with disc of size 3 at bottom and disc of size 1 at top')
-print( '-->If the peg is empty, just click ENTER; Do not input anything in that case')
-
-noOfPegs = int(input("\nEnter number of pegs--> "))
+noOfStacks = int(input("\nEnter number of stacks: "))
 
 print('\nEnter details for initial State') 
 initialState = readState()
